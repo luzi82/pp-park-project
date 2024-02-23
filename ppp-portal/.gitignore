@@ -42,3 +42,4 @@ _meta
 .serverless
 
 venv
+config.py
