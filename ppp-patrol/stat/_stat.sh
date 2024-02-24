@@ -10,7 +10,9 @@ echo ====START====
 echo ${YYYYMMDDHHMMSS}
 
 echo ==ARCHIVE-CLEAN-START==
-${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py ${MY_PATH}/log stat
+${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py \
+  --folder_path ${MY_PATH}/log \
+  --s3_path stat
 echo ==ARCHIVE-CLEAN-END==
 
 echo ==TOP-START==
