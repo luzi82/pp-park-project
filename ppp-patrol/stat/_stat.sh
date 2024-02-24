@@ -9,9 +9,9 @@ PATROL_PATH=`/usr/bin/dirname ${MY_PATH}`
 echo ====START====
 echo ${YYYYMMDDHHMMSS}
 
-echo ==CLEAN-START==
+echo ==ARCHIVE-CLEAN-START==
 ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py ${MY_PATH}/log stat
-echo ==CLEAN-END==
+echo ==ARCHIVE-CLEAN-END==
 
 echo ==TOP-START==
 /usr/bin/top -b -n 1 | /usr/bin/grep "PalServer-Linux"
