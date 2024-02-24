@@ -13,15 +13,33 @@ def pppstatus(event, context):
     state_name = instance.state['Name']
     if state_name == 'running':
         public_ip_address = instance.public_ip_address
-        msg = f'{state_name} {public_ip_address}'
+        msg = f'state={state_name}, IP = {public_ip_address}'
     else:
-        msg = state_name
+        msg = f'state={state_name}'
 
     edit(eee, msg)
-    return {
-        "statusCode": 200,
-    }
+    return {"statusCode": 200}
 
+def pppstart(event, context):
+    eee = event
+
+    my_config = botocore.config.Config(region_name = 'ap-east-1')
+    ec2_resource = boto3.resource('ec2', config=my_config)
+    instance = ec2_resource.Instance(config.INSTANCE_ID)
+    instance_state = instance.state['Name']
+    if instance_state == 'stopped':
+        instance.start()
+        msg = "Starting..."
+    elif instance_state == 'running':
+        public_ip_address = instance.public_ip_address
+        msg = f"Instance is already running, IP={public_ip_address}"
+    else:
+        msg = f"Instance is not stopped, state={instance_state}.  Try again later."
+
+    edit(eee, msg)
+    return {"statusCode": 200}
+
+# copy from https://github.com/breqdev/flask-discord-interactions/blob/main/flask_discord_interactions/context.py
 def edit(eee, updated: str, message: str = "@original"):
     updated = Message.from_return_value(updated)
 
@@ -34,18 +52,6 @@ def edit(eee, updated: str, message: str = "@original"):
     updated.raise_for_status()
 
 def followup_url(eee, message: str = None):
-    """
-    Return the followup URL for this interaction. This URL can be used to
-    send a new message, or to edit or delete an existing message.
-
-    Parameters
-    ----------
-    message: str
-        The ID of the message to edit or delete.
-        If None, sends a new message.
-        If "@original", refers to the original message.
-    """
-
     url = (
         f"{eee['DISCORD_BASE_URL']}/webhooks/"
         f"{eee['DISCORD_CLIENT_ID']}/{eee['token']}"
