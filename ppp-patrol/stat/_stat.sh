@@ -12,7 +12,7 @@ echo ${YYYYMMDDHHMMSS}
 echo ==ARCHIVE-CLEAN-START==
 ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py \
   --folder_path ${MY_PATH}/log \
-  --s3_path stat
+  --s3_path stat-log
 echo ==ARCHIVE-CLEAN-END==
 
 echo ==TOP-START==

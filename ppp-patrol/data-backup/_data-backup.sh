@@ -10,8 +10,12 @@ MM=${YYYYMMDDHHMMSS:4:2}
 mkdir -p ${MY_PATH}/var
 
 ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py \
+  --folder_path ${MY_PATH}/log \
+  --s3_path data-backup-log
+
+${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py \
   --folder_path ${MY_PATH}/var
 
 cd /root/palworld-server
 tar -czf ${MY_PATH}/var/data.${YYYYMMDDHHMMSS}.tar.gz data
-aws s3 cp ${MY_PATH}/var/data.${YYYYMMDDHHMMSS}.tar.gz s3://luzi82-palworld/data-backup/${YYYY}/${MM}/
+aws s3 cp ${MY_PATH}/var/data.${YYYYMMDDHHMMSS}.tar.gz s3://luzi82-palworld/archive/data-backup/${YYYY}/${MM}/
