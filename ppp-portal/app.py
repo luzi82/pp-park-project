@@ -57,12 +57,13 @@ def call_asyncc(ctx, func_name):
     eee = {
         "DISCORD_BASE_URL": ctx.app.config["DISCORD_BASE_URL"],
         "DISCORD_CLIENT_ID": ctx.app.config["DISCORD_CLIENT_ID"],
-        "token": ctx.token
+        "token": ctx.token,
+        'func_name': func_name
     }
 
     lambda_client = boto3.client('lambda')
     lambda_client.invoke(
-        FunctionName=f'ppp-portal-dev-{func_name}',
+        FunctionName=f'ppp-portal-dev-asyncc',
         InvocationType='Event',
         Payload=json.dumps(eee)
     )

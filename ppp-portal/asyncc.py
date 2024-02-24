@@ -4,6 +4,20 @@ import config
 import requests
 from flask_discord_interactions.models import Message
 
+handler_name_to_func_dict = {}
+def reg_handler(func):
+    handler_name_to_func_dict[func.__name__] = func
+    return func
+
+def handler(event, context):
+    eee = event
+    func_name = eee['func_name']
+    if func_name in handler_name_to_func_dict:
+        return handler_name_to_func_dict[func_name](event, context)
+    else:
+        return {"statusCode": 404}
+
+@reg_handler
 def pppstatus(event, context):
     eee = event
 
@@ -20,6 +34,7 @@ def pppstatus(event, context):
     edit(eee, msg)
     return {"statusCode": 200}
 
+@reg_handler
 def pppstart(event, context):
     eee = event
 

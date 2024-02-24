@@ -20,8 +20,8 @@ functions:
     handler: wsgi_handler.handler
     events:
       - httpApi: '*'
-  pppstatus:
-    handler: asyncc.pppstatus
+  asyncc:
+    handler: asyncc.handler
 
 plugins:
   - serverless-wsgi
