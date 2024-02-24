@@ -3,7 +3,7 @@
 export COLUMNS=999
 YYYYMMDDHHMMSS=${1}
 
-MY_PATH=`/usr/bin/dirname ${0}`
+MY_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 PATROL_PATH=`/usr/bin/dirname ${MY_PATH}`
 
 echo ====START====

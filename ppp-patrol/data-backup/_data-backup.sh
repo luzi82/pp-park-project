@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-MY_PATH=`/usr/bin/dirname ${0}`
+MY_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 PATROL_PATH=`/usr/bin/dirname ${MY_PATH}`
 
 YYYYMMDDHHMMSS=`date +%Y%m%d-%H%M%S`
