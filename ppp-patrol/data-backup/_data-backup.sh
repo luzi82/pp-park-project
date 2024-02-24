@@ -7,6 +7,8 @@ YYYYMMDDHHMMSS=`date +%Y%m%d-%H%M%S`
 YYYY=${YYYYMMDDHHMMSS:0:4}
 MM=${YYYYMMDDHHMMSS:4:2}
 
+mkdir -p ${MY_PATH}/var
+
 ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py \
   --folder_path ${MY_PATH}/var
 
