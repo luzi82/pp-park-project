@@ -13,7 +13,7 @@ YYYYMMDD=${YYYYMMDDHHMMSS:0:8}
 ${PATROL_PATH}/stat/stat.sh
 
 if [ "${NOW_TS_D60_M15}" == "0" ]; then
-  ${PATROL_PATH}/backup/backup.sh
+  ${PATROL_PATH}/data-backup/data-backup.sh
 fi
 
 ${PATROL_PATH}/auto-off/auto-off.sh
