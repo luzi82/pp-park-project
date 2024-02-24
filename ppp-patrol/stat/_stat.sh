@@ -9,6 +9,16 @@ PATROL_PATH=`/usr/bin/dirname ${MY_PATH}`
 echo ====START====
 echo ${YYYYMMDDHHMMSS}
 
+TMP_DF_OUTPUT=/tmp/df__SCLEWVZSUFSWQKVFQPWWIUTECMTIMDQD__
+echo ==DF-START==
+df > ${TMP_DF_OUTPUT}
+cat ${TMP_DF_OUTPUT}
+ROOT_USAGE_PERCENT=`cat ${TMP_DF_OUTPUT} | grep "/dev/root" | awk '{print $5}' | sed 's/%//g'`
+if [ ${ROOT_USAGE_PERCENT} -gt 80 ]; then
+  ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/broadcast.py VERBOSE "root usage ${ROOT_USAGE_PERCENT}%"
+fi
+echo ==DF-END==
+
 echo ==ARCHIVE-CLEAN-START==
 ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/timeout_archive_clean.py \
   --folder_path ${MY_PATH}/log \
