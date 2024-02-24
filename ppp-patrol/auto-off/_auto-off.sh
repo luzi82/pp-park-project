@@ -38,40 +38,40 @@ PACKETS_SENT=`cat /tmp/netstat__XCNWFIEXGRCALWEVLMYFOZALVRHQQWXW__ | grep "packe
 PACKETS_SENT=(${PACKETS_SENT})
 PACKETS_SENT=${PACKETS_SENT[0]}
 
-if [ -f "/root/auto-off/var/SERVER_PID_1" ]; then
-  LAST_SERVER_PID=`cat /root/auto-off/var/SERVER_PID_1`
+if [ -f "${MY_PATH}/var/SERVER_PID_1" ]; then
+  LAST_SERVER_PID=`cat ${MY_PATH}/var/SERVER_PID_1`
 else
   LAST_SERVER_PID="NONE"
 fi
 
-if [ -f "/root/auto-off/var/PACKETS_RECEIVED_1" ]; then
-  LAST_PACKETS_RECEIVED=`cat /root/auto-off/var/PACKETS_RECEIVED_1`
+if [ -f "${MY_PATH}/var/PACKETS_RECEIVED_1" ]; then
+  LAST_PACKETS_RECEIVED=`cat ${MY_PATH}/var/PACKETS_RECEIVED_1`
 else
   LAST_PACKETS_RECEIVED="-999999"
 fi
 
-if [ -f "/root/auto-off/var/PACKETS_SENT_1" ]; then
-  LAST_PACKETS_SENT=`cat /root/auto-off/var/PACKETS_SENT_1`
+if [ -f "${MY_PATH}/var/PACKETS_SENT_1" ]; then
+  LAST_PACKETS_SENT=`cat ${MY_PATH}/var/PACKETS_SENT_1`
 else
   LAST_PACKETS_SENT="-999999"
 fi
 
-if [ -f "/root/auto-off/var/SERVER_PID_0" ]; then
-  cp /root/auto-off/var/SERVER_PID_0 /root/auto-off/var/SERVER_PID_1
+if [ -f "${MY_PATH}/var/SERVER_PID_0" ]; then
+  cp ${MY_PATH}/var/SERVER_PID_0 ${MY_PATH}/var/SERVER_PID_1
 fi
-if [ -f "/root/auto-off/var/PACKETS_RECEIVED_0" ]; then
-  cp /root/auto-off/var/PACKETS_RECEIVED_0 /root/auto-off/var/PACKETS_RECEIVED_1
+if [ -f "${MY_PATH}/var/PACKETS_RECEIVED_0" ]; then
+  cp ${MY_PATH}/var/PACKETS_RECEIVED_0 ${MY_PATH}/var/PACKETS_RECEIVED_1
 fi
-if [ -f "/root/auto-off/var/PACKETS_SENT_0" ]; then
-  cp /root/auto-off/var/PACKETS_SENT_0 /root/auto-off/var/PACKETS_SENT_1
+if [ -f "${MY_PATH}/var/PACKETS_SENT_0" ]; then
+  cp ${MY_PATH}/var/PACKETS_SENT_0 ${MY_PATH}/var/PACKETS_SENT_1
 fi
 
 PACKETS_RECEIVED_DIFF=$((${PACKETS_RECEIVED} - ${LAST_PACKETS_RECEIVED}))
 PACKETS_SENT_DIFF=$((${PACKETS_SENT} - ${LAST_PACKETS_SENT}))
 
-echo ${SERVER_PID} > /root/auto-off/var/SERVER_PID_0
-echo ${PACKETS_RECEIVED} > /root/auto-off/var/PACKETS_RECEIVED_0
-echo ${PACKETS_SENT} > /root/auto-off/var/PACKETS_SENT_0
+echo ${SERVER_PID} > ${MY_PATH}/var/SERVER_PID_0
+echo ${PACKETS_RECEIVED} > ${MY_PATH}/var/PACKETS_RECEIVED_0
+echo ${PACKETS_SENT} > ${MY_PATH}/var/PACKETS_SENT_0
 
 echo UPTIME_TS=${UPTIME_TS}
 echo NOW_TS=${NOW_TS}
