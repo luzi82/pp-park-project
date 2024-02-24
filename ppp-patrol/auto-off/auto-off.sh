@@ -8,7 +8,7 @@ YYYYMMDD=${YYYYMMDDHHMMSS:0:8}
 
 mkdir -p ${MY_PATH}/log
 
-/usr/bin/bash -e ${MY_PATH}/_stat.sh ${YYYYMMDDHHMMSS} >> ${MY_PATH}/log/${YYYYMMDD}.log 2>&1
+/usr/bin/bash -e ${MY_PATH}/_auto-off.sh ${YYYYMMDDHHMMSS} >> ${MY_PATH}/log/${YYYYMMDD}.log 2>&1
 if [ $? -ne 0 ]; then
   ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/broadcast.py VERBOSE "${0} failed, ${YYYYMMDDHHMMSS}, ${LOG_PATH}"
   exit 1
