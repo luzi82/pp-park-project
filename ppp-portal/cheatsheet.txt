@@ -1,0 +1,4 @@
+# run in linux
+
+. venv/bin/activate
+serverless deploy
