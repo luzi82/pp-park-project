@@ -27,7 +27,7 @@ def pppstatus(event, context):
     state_name = instance.state['Name']
     if state_name == 'running':
         public_ip_address = instance.public_ip_address
-        msg = f'state={state_name}, IP = {public_ip_address}'
+        msg = f'state={state_name}, IP = {public_ip_address}:8211'
     else:
         msg = f'state={state_name}'
 
