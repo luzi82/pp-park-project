@@ -6,5 +6,5 @@ pip install -r requirements.txt
 
 crontab -e
 
-@reboot /root/pp-park-project/ppp-patrol/boot/boot.sh
+@reboot /root/pp-park-project/ppp-patrol/cron/boot.sh
 */5 * * * * /root/pp-park-project/ppp-patrol/cron/5min.sh
