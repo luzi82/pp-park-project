@@ -124,6 +124,7 @@ fi
 if [ "${DO_SHUTDOWN}" == "1" ]; then
   echo SHUTDOWN
   ${PATROL_PATH}/venv/bin/python ${PATROL_PATH}/common/broadcast.py NOTICE "PP園區光榮關閉中♪ 營運時間:${GONE_SEC}s=${GONE_SEC_DH}h"
+  docker container stop palworld-server_palworld_1
   shutdown -h now
 fi
 
