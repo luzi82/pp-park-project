@@ -66,6 +66,12 @@ if [ -f "${MY_PATH}/var/PACKETS_SENT_0" ]; then
   cp ${MY_PATH}/var/PACKETS_SENT_0 ${MY_PATH}/var/PACKETS_SENT_1
 fi
 
+if [ -f "/home/ubuntu/nooff" ]; then
+  NOOFF=1
+else
+  NOOFF=0
+fi
+
 PACKETS_RECEIVED_DIFF=$((${PACKETS_RECEIVED} - ${LAST_PACKETS_RECEIVED}))
 PACKETS_SENT_DIFF=$((${PACKETS_SENT} - ${LAST_PACKETS_SENT}))
 
@@ -95,6 +101,11 @@ DO_SHUTDOWN=1
 #  echo BEFORE UTC 16:00
 #  DO_SHUTDOWN=0
 #fi
+
+if [ "${NOOFF}" == "1" ]; then
+  echo NO-OFF enabled
+  DO_SHUTDOWN=0
+fi
 
 if [ "${SERVER_PID}" == "NONE" ]; then
   echo NO SERVER RUNNING
