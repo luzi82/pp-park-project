@@ -8,7 +8,7 @@ aws s3 cp \
   /root/palworld-server/data/Config/LinuxServer/
 aws s3 cp \
   s3://luzi82-palworld/config/current/WorldOption.sav \
-  /root/palworld-server/data/Config/LinuxServer/
+  /root/palworld-server/data/SaveGames/0/0F2C174EEAC54B27B731EC325BD7E605/
 
 docker container restart palworld-server_palworld_1
 
